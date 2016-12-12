@@ -15,10 +15,11 @@ namespace projeto_SIS
 {
     public partial class Dashboard : Form
     {
-        public string token;
+        public string access_token;
         private List<User> secretarias;
         public Dashboard(string access_token)
         {
+            this.access_token = access_token;
             InitializeComponent();
             ListarSecretarias(access_token);
         }
@@ -45,7 +46,7 @@ namespace projeto_SIS
             request.Method = Method.POST;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("ACCESS-TOKEN", token);
+            request.AddHeader("ACCESS-TOKEN", access_token);
             
             string birthday = dateTimePickerBirthday.Value.ToString("yyyy-MM-dd");
             string gender = null;
@@ -80,7 +81,7 @@ namespace projeto_SIS
                 request.Method = Method.DELETE;
                 request.AddHeader("Accept", "application/json");
                 request.AddHeader("Content-Type", "application/json");
-                request.AddHeader("ACCESS-TOKEN", token);
+                request.AddHeader("ACCESS-TOKEN", access_token);
                 IRestResponse response = client.Execute(request);
             }
         }

@@ -26,14 +26,13 @@ namespace projeto_SIS
             {
                 if (textBoxUsername.Text == "admin")
                 {
-                    var client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/authenticate");
-                    var request = new RestRequest();
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/authenticate");
+                    RestRequest request = new RestRequest();
 
                     request.Method = Method.POST;
                     request.AddHeader("Accept", "application/json");
                     request.AddHeader("Content-Type", "application/json");
                     
-
                     request.AddJsonBody(
                      new
                      {
@@ -53,9 +52,7 @@ namespace projeto_SIS
                     if (access_token != null)
                     {
                         this.Hide();
-
                         Dashboard dashboard = new Dashboard(access_token);
-                        dashboard.token = access_token;
                         dashboard.ShowDialog();
                         this.ShowDialog();
                     }
