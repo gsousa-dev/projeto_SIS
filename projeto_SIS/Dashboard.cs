@@ -30,70 +30,139 @@ namespace projeto_SIS
         //SECRETARIAS
         public void ListarSecretarias()
         {
-            listBoxSecretarias.DataSource = null;
+            try
+            {
+                listBoxSecretarias.DataSource = null;
 
-            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
-            RestRequest request = new RestRequest();
-            request.Method = Method.GET;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("ACCESS-TOKEN", access_token);
-            request.AddHeader("USER-TYPE", (2).ToString());
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
+                RestRequest request = new RestRequest();
+                request.Method = Method.GET;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("ACCESS-TOKEN", access_token);
+                request.AddHeader("USER-TYPE", (2).ToString());
 
-            IRestResponse response = client.Execute(request);
-            string json = response.Content;
+                IRestResponse response = client.Execute(request);
+                string json = response.Content;
 
-            secretarias = JsonConvert.DeserializeObject<List<User>>(json);
-            listBoxSecretarias.DataSource = secretarias;
-            listBoxSecretarias.SelectedIndex = -1;
+                secretarias = JsonConvert.DeserializeObject<List<User>>(json);
+                listBoxSecretarias.DataSource = secretarias;
+                listBoxSecretarias.SelectedIndex = -1;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar listar as secretárias. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
         }
 
         private void buttonAddSecretaria_Click(object sender, EventArgs e)
         {
-            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/");
-            RestRequest request = new RestRequest();
-            request.Method = Method.POST;
-            request.AddHeader("Accept", "application/json");
-            request.AddHeader("Content-Type", "application/json");
-            request.AddHeader("ACCESS-TOKEN", access_token);
+            if (textBoxAddUsernameSecretaria.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+                
+            if (textBoxAddPasswordSecretaria.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBoxAddEmailSecretaria.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (textBoxAddNameSecretaria.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (comboBoxAddGeneroSecretaria.SelectedIndex == -1)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            
-            string birthday = dateTimePickerAddSecretaria.Value.ToString("yyyy-MM-dd");
-            string gender = null;
-            if (comboBoxAddGeneroSecretaria.Text == "Masculino")
-                gender = "M";
-            else if (comboBoxAddGeneroSecretaria.Text == "Feminino")
-                gender = "F";
+            try
+            {
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/");
+                RestRequest request = new RestRequest();
+                request.Method = Method.POST;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("ACCESS-TOKEN", access_token);
 
-            request.AddJsonBody(
-                     new
-                     {
-                         user_type = 2,
-                         username = textBoxAddUsernameSecretaria.Text,
-                         password = textBoxAddPasswordSecretaria.Text,
-                         email = textBoxAddEmailSecretaria.Text,
-                         name = textBoxAddNameSecretaria.Text,
-                         birthday = birthday,
-                         gender = gender
-                     }
-                    );
 
-            IRestResponse response = client.Execute(request);                                   
+                string birthday = dateTimePickerAddSecretaria.Value.ToString("yyyy-MM-dd");
+                string gender = null;
+                if (comboBoxAddGeneroSecretaria.Text == "Masculino")
+                    gender = "M";
+                else if (comboBoxAddGeneroSecretaria.Text == "Feminino")
+                    gender = "F";
+
+                request.AddJsonBody(
+                         new
+                         {
+                             user_type = 2,
+                             username = textBoxAddUsernameSecretaria.Text,
+                             password = textBoxAddPasswordSecretaria.Text,
+                             email = textBoxAddEmailSecretaria.Text,
+                             name = textBoxAddNameSecretaria.Text,
+                             birthday = birthday,
+                             gender = gender
+                         }
+                        );
+
+                IRestResponse response = client.Execute(request);
+
+                listBoxSecretarias.DataSource = null;
+
+                ListarSecretarias();
+
+                textBoxAddPasswordSecretaria.Text = "";
+                textBoxAddPasswordSecretaria.Text = "";
+                textBoxAddEmailSecretaria.Text = "";
+                textBoxAddNameSecretaria.Text = "";
+                comboBoxAddGeneroSecretaria.SelectedIndex = -1;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar adicionar uma secretária. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+                                          
         }
 
         private void buttonApagarSecretaria_Click(object sender, EventArgs e)
         {
-            if (listBoxSecretarias.SelectedIndex != -1)
+            try
             {
-                int id = ((User)listBoxSecretarias.SelectedItem).ID;
-                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
-                RestRequest request = new RestRequest();
-                request.Method = Method.DELETE;
-                request.AddHeader("Accept", "application/json");
-                request.AddHeader("Content-Type", "application/json");
-                request.AddHeader("ACCESS-TOKEN", access_token);
-                IRestResponse response = client.Execute(request);
+                if (listBoxSecretarias.SelectedIndex != -1)
+                {
+                    int id = ((User)listBoxSecretarias.SelectedItem).ID;
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
+                    RestRequest request = new RestRequest();
+                    request.Method = Method.DELETE;
+                    request.AddHeader("Accept", "application/json");
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddHeader("ACCESS-TOKEN", access_token);
+                    IRestResponse response = client.Execute(request);
+
+                    listBoxSecretarias.DataSource = null;
+
+                    ListarSecretarias();
+                }
             }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar apagar uma secretária. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            
         }
 
         private void listBoxSecretarias_SelectedIndexChanged(object sender, EventArgs e)
@@ -108,8 +177,6 @@ namespace projeto_SIS
                 textBoxEmailSecretaria.Text = "";
                 textBoxNomeSecretaria.Text = "";
                 comboBoxGeneroSecretaria.SelectedIndex = -1;
-
-                return;
             }
             else {
                 textBoxPasswordSecretaria.Text = "";
@@ -127,6 +194,11 @@ namespace projeto_SIS
 
             comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBoxAddGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void buttonRefreshSecretariaList_Click(object sender, EventArgs e)
+        {
+            ListarSecretarias();
         }
 
 
