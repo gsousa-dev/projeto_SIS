@@ -21,9 +21,9 @@ namespace projeto_SIS
         {
             this.access_token = access_token;
             InitializeComponent();
-            ListarSecretarias(access_token);
+            ListarSecretarias();
         }
-        public void ListarSecretarias(string access_token)
+        public void ListarSecretarias()
         {
             RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user");
             RestRequest request = new RestRequest();
