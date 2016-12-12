@@ -88,7 +88,7 @@ namespace projeto_SIS
 
             try
             {
-                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/");
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user");
                 RestRequest request = new RestRequest();
                 request.Method = Method.POST;
                 request.AddHeader("Accept", "application/json");
