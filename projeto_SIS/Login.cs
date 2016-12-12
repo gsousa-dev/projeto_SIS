@@ -42,16 +42,22 @@ namespace projeto_SIS
                      }
                     );
 
-                    var response = client.Execute(request);
-                    var content = response.Content;
+                    IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro("Pedido", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+                    string content = response.Content;
                     string access_token = JObject.Parse(content).Property("token").Value.ToString();
 
+                
                     if (access_token != null)
                     {
                         this.Hide();
+
                         Dashboard dashboard = new Dashboard(access_token);
                         dashboard.token = access_token;
-                        dashboard.Show();
+                        dashboard.ShowDialog();
+                        this.ShowDialog();
                     }
                     else
                         MessageBox.Show("Algo de errado aconteceu.", "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);                    
