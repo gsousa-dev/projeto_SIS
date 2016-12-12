@@ -46,7 +46,7 @@ namespace projeto_SIS
                     Utils.escreverParaFicheiro("Pedido", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
                     string content = response.Content;
-                    string access_token = JObject.Parse(content).Property("token").Value.ToString();
+                    string access_token = JObject.Parse(content).Property("access_token").Value.ToString();
 
                 
                     if (access_token != null)
