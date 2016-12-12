@@ -11,6 +11,7 @@ namespace projeto_SIS
         private int id, user_type, status, created_at, updated_at;
         private string username, auth_key, password_hash, password_reset_token, email, name, birthday, gender, profile_picture;
 
+        
         public User(int id, int user_type, string username, string auth_key, string password_hash, string password_reset_token, string email, int status, int created_at, int updated_at, string name, string birthday, string gender, string profile_picture)
         {
             this.id = id;
@@ -28,12 +29,20 @@ namespace projeto_SIS
             this.gender = gender;
             this.profile_picture = profile_picture;        
         }
+        
 
         public int ID { get { return id; } }
+        public string Username { get { return username; } }
+        public string Email { get { return email; } }
+        public string Name { get { return name; } }
+        public string Birthday { get { return birthday; } }
+        public string Gender { get { return gender; } }
+
+
 
         public override string ToString()
         {
-            return username.ToString() + " - " + email.ToString();
+            return "Username: " + this.username.ToString() + " | Email: " + this.email.ToString() + " | Nome: " + this.name.ToString() + " | Data de Nascimento: " + this.birthday.ToString() + " | Genero: " + this.gender.ToString();
         }
     }
 }

@@ -17,52 +17,62 @@ namespace projeto_SIS
     {
         public string access_token;
         private List<User> secretarias;
+        private List<Exercicio> exercicios;
+
         public Dashboard(string access_token)
         {
             this.access_token = access_token;
             InitializeComponent();
             ListarSecretarias();
+            //ListarExercicios();
         }
+
+        //SECRETARIAS
         public void ListarSecretarias()
         {
-            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user");
+            listBoxSecretarias.DataSource = null;
+
+            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
             RestRequest request = new RestRequest();
             request.Method = Method.GET;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("ACCESS-TOKEN", access_token);
+            request.AddHeader("USER-TYPE", (2).ToString());
 
             IRestResponse response = client.Execute(request);
             string json = response.Content;
 
             secretarias = JsonConvert.DeserializeObject<List<User>>(json);
             listBoxSecretarias.DataSource = secretarias;
+            listBoxSecretarias.SelectedIndex = -1;
         }
 
         private void buttonAddSecretaria_Click(object sender, EventArgs e)
         {
-            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user");
+            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/");
             RestRequest request = new RestRequest();
             request.Method = Method.POST;
             request.AddHeader("Accept", "application/json");
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("ACCESS-TOKEN", access_token);
+
             
-            string birthday = dateTimePickerBirthday.Value.ToString("yyyy-MM-dd");
+            string birthday = dateTimePickerAddSecretaria.Value.ToString("yyyy-MM-dd");
             string gender = null;
-            if (comboBoxGender.Text == "Masculino")
+            if (comboBoxAddGeneroSecretaria.Text == "Masculino")
                 gender = "M";
-            else if (comboBoxGender.Text == "Feminino")
+            else if (comboBoxAddGeneroSecretaria.Text == "Feminino")
                 gender = "F";
 
             request.AddJsonBody(
                      new
                      {
                          user_type = 2,
-                         username = textBoxUsername.Text,
-                         password = textBoxPassword.Text,
-                         email = textBoxEmail.Text,
-                         name = textBoxName.Text,
+                         username = textBoxAddUsernameSecretaria.Text,
+                         password = textBoxAddPasswordSecretaria.Text,
+                         email = textBoxAddEmailSecretaria.Text,
+                         name = textBoxAddNameSecretaria.Text,
                          birthday = birthday,
                          gender = gender
                      }
@@ -88,7 +98,45 @@ namespace projeto_SIS
 
         private void listBoxSecretarias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+     
+            User secretariaSelecionada = ((User)listBoxSecretarias.SelectedItem);
+
+            if (secretariaSelecionada == null)
+                return;
+
+            textBoxPasswordSecretaria.Text = "";
+            textBoxUsernameSecretaria.Text = secretariaSelecionada.Username;
+            textBoxEmailSecretaria.Text = secretariaSelecionada.Email;
+            textBoxNomeSecretaria.Text = secretariaSelecionada.Name;
+            if (secretariaSelecionada.Gender == "M")
+                comboBoxGeneroSecretaria.SelectedIndex = 0;
+            if (secretariaSelecionada.Gender == "F")
+                comboBoxGeneroSecretaria.SelectedIndex = 1;
+
+            comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+
+
+        //---------------- EXERCICIOS-----------------------------
+        /*public void ListarExercicios()
+        {
+            listBoxExercicios.DataSource = null;
+
+            RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicios");
+            RestRequest request = new RestRequest();
+            request.Method = Method.GET;
+            request.AddHeader("Accept", "application/json");
+            request.AddHeader("Content-Type", "application/json");
+            request.AddHeader("ACCESS-TOKEN", access_token);
+
+            IRestResponse response = client.Execute(request);
+            string json = response.Content;
+
+            exercicios = JsonConvert.DeserializeObject<List<Exercicio>>(json);
+            listBoxExercicios.DataSource = exercicios;
+        }
+
+    */
+
     }
 }
