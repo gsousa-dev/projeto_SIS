@@ -47,7 +47,6 @@ namespace projeto_SIS
 
                     string content = response.Content;
                     string access_token = JObject.Parse(content).Property("access_token").Value.ToString();
-
                 
                     if (access_token != null)
                     {
