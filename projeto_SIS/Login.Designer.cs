@@ -43,18 +43,20 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(46, 134);
+            this.label3.Location = new System.Drawing.Point(61, 165);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 20);
+            this.label3.Size = new System.Drawing.Size(75, 25);
             this.label3.TabIndex = 16;
             this.label3.Text = "FitApp";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(127, 119);
+            this.pictureBox1.Size = new System.Drawing.Size(169, 146);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -62,27 +64,30 @@
             // textBoxPassword
             // 
             this.textBoxPassword.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPassword.Location = new System.Drawing.Point(167, 78);
+            this.textBoxPassword.Location = new System.Drawing.Point(223, 96);
+            this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.PasswordChar = '*';
-            this.textBoxPassword.Size = new System.Drawing.Size(142, 23);
+            this.textBoxPassword.Size = new System.Drawing.Size(188, 26);
             this.textBoxPassword.TabIndex = 14;
             // 
             // textBoxUsername
             // 
             this.textBoxUsername.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxUsername.Location = new System.Drawing.Point(167, 29);
+            this.textBoxUsername.Location = new System.Drawing.Point(223, 36);
+            this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxUsername.Name = "textBoxUsername";
-            this.textBoxUsername.Size = new System.Drawing.Size(142, 23);
+            this.textBoxUsername.Size = new System.Drawing.Size(188, 26);
             this.textBoxUsername.TabIndex = 13;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(164, 60);
+            this.label4.Location = new System.Drawing.Point(219, 74);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 15);
+            this.label4.Size = new System.Drawing.Size(90, 20);
             this.label4.TabIndex = 12;
             this.label4.Text = "Password";
             // 
@@ -90,18 +95,20 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(164, 12);
+            this.label5.Location = new System.Drawing.Point(219, 15);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(74, 15);
+            this.label5.Size = new System.Drawing.Size(93, 20);
             this.label5.TabIndex = 11;
             this.label5.Text = "Username";
             // 
             // buttonLogin
             // 
             this.buttonLogin.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F);
-            this.buttonLogin.Location = new System.Drawing.Point(167, 118);
+            this.buttonLogin.Location = new System.Drawing.Point(223, 145);
+            this.buttonLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonLogin.Name = "buttonLogin";
-            this.buttonLogin.Size = new System.Drawing.Size(142, 23);
+            this.buttonLogin.Size = new System.Drawing.Size(189, 28);
             this.buttonLogin.TabIndex = 17;
             this.buttonLogin.Text = "Login";
             this.buttonLogin.UseVisualStyleBackColor = true;
@@ -109,9 +116,9 @@
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 173);
+            this.ClientSize = new System.Drawing.Size(436, 213);
             this.Controls.Add(this.buttonLogin);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
@@ -119,7 +126,10 @@
             this.Controls.Add(this.textBoxUsername);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MaximizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
