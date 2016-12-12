@@ -102,18 +102,31 @@ namespace projeto_SIS
             User secretariaSelecionada = ((User)listBoxSecretarias.SelectedItem);
 
             if (secretariaSelecionada == null)
-                return;
+            {
+                textBoxPasswordSecretaria.Text = "";
+                textBoxUsernameSecretaria.Text = "";
+                textBoxEmailSecretaria.Text = "";
+                textBoxNomeSecretaria.Text = "";
+                comboBoxGeneroSecretaria.SelectedIndex = -1;
 
-            textBoxPasswordSecretaria.Text = "";
-            textBoxUsernameSecretaria.Text = secretariaSelecionada.Username;
-            textBoxEmailSecretaria.Text = secretariaSelecionada.Email;
-            textBoxNomeSecretaria.Text = secretariaSelecionada.Name;
-            if (secretariaSelecionada.Gender == "M")
-                comboBoxGeneroSecretaria.SelectedIndex = 0;
-            if (secretariaSelecionada.Gender == "F")
-                comboBoxGeneroSecretaria.SelectedIndex = 1;
+                return;
+            }
+            else {
+                textBoxPasswordSecretaria.Text = "";
+                textBoxUsernameSecretaria.Text = secretariaSelecionada.Username;
+                textBoxEmailSecretaria.Text = secretariaSelecionada.Email;
+                textBoxNomeSecretaria.Text = secretariaSelecionada.Name;
+                if (secretariaSelecionada.Gender == "M")
+                    comboBoxGeneroSecretaria.SelectedIndex = 0;
+                if (secretariaSelecionada.Gender == "F")
+                    comboBoxGeneroSecretaria.SelectedIndex = 1;
+            }
+                
+
+            
 
             comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAddGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
 
