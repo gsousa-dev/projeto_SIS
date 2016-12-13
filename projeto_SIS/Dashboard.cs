@@ -122,7 +122,7 @@ namespace projeto_SIS
 
                 ListarSecretarias();
 
-                textBoxAddPasswordSecretaria.Text = "";
+                textBoxAddUsernameSecretaria.Text = "";
                 textBoxAddPasswordSecretaria.Text = "";
                 textBoxAddEmailSecretaria.Text = "";
                 textBoxAddNameSecretaria.Text = "";
