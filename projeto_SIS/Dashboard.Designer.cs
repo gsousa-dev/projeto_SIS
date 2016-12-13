@@ -37,7 +37,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.comboBoxGeneroSecretaria = new System.Windows.Forms.ComboBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.textBoxNomeSecretaria = new System.Windows.Forms.TextBox();
+            this.textBoxNameSecretaria = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
@@ -162,7 +162,7 @@
             this.groupBox6.Controls.Add(this.label25);
             this.groupBox6.Controls.Add(this.comboBoxGeneroSecretaria);
             this.groupBox6.Controls.Add(this.label27);
-            this.groupBox6.Controls.Add(this.textBoxNomeSecretaria);
+            this.groupBox6.Controls.Add(this.textBoxNameSecretaria);
             this.groupBox6.Controls.Add(this.label28);
             this.groupBox6.Controls.Add(this.label29);
             this.groupBox6.Controls.Add(this.label30);
@@ -220,13 +220,13 @@
             this.label27.TabIndex = 20;
             this.label27.Text = "Nome";
             // 
-            // textBoxNomeSecretaria
+            // textBoxNameSecretaria
             // 
-            this.textBoxNomeSecretaria.Location = new System.Drawing.Point(173, 170);
-            this.textBoxNomeSecretaria.Margin = new System.Windows.Forms.Padding(4);
-            this.textBoxNomeSecretaria.Name = "textBoxNomeSecretaria";
-            this.textBoxNomeSecretaria.Size = new System.Drawing.Size(224, 22);
-            this.textBoxNomeSecretaria.TabIndex = 23;
+            this.textBoxNameSecretaria.Location = new System.Drawing.Point(173, 170);
+            this.textBoxNameSecretaria.Margin = new System.Windows.Forms.Padding(4);
+            this.textBoxNameSecretaria.Name = "textBoxNameSecretaria";
+            this.textBoxNameSecretaria.Size = new System.Drawing.Size(224, 22);
+            this.textBoxNameSecretaria.TabIndex = 23;
             // 
             // label28
             // 
@@ -284,6 +284,7 @@
             this.buttonAlterarSecretaria.TabIndex = 4;
             this.buttonAlterarSecretaria.Text = "Alterar";
             this.buttonAlterarSecretaria.UseVisualStyleBackColor = true;
+            this.buttonAlterarSecretaria.Click += new System.EventHandler(this.buttonAlterarSecretaria_Click);
             // 
             // groupBox4
             // 
@@ -535,6 +536,7 @@
             this.buttonAdicionarExercicio.TabIndex = 4;
             this.buttonAdicionarExercicio.Text = "Adicionar";
             this.buttonAdicionarExercicio.UseVisualStyleBackColor = true;
+            this.buttonAdicionarExercicio.Click += new System.EventHandler(this.buttonAdicionarExercicio_Click);
             // 
             // buttonRefreshExercícios
             // 
@@ -545,6 +547,7 @@
             this.buttonRefreshExercícios.TabIndex = 26;
             this.buttonRefreshExercícios.Text = "Refresh List";
             this.buttonRefreshExercícios.UseVisualStyleBackColor = true;
+            this.buttonRefreshExercícios.Click += new System.EventHandler(this.buttonRefreshExercícios_Click);
             // 
             // label9
             // 
@@ -565,6 +568,7 @@
             this.listBoxExercicios.Name = "listBoxExercicios";
             this.listBoxExercicios.Size = new System.Drawing.Size(1169, 292);
             this.listBoxExercicios.TabIndex = 24;
+            this.listBoxExercicios.SelectedIndexChanged += new System.EventHandler(this.listBoxExercicios_SelectedIndexChanged);
             // 
             // buttonApagarExercicio
             // 
@@ -576,6 +580,7 @@
             this.buttonApagarExercicio.TabIndex = 23;
             this.buttonApagarExercicio.Text = "Apagar";
             this.buttonApagarExercicio.UseVisualStyleBackColor = true;
+            this.buttonApagarExercicio.Click += new System.EventHandler(this.buttonApagarExercicio_Click);
             // 
             // groupBox1
             // 
@@ -619,6 +624,7 @@
             this.buttonAlterarExercicio.TabIndex = 4;
             this.buttonAlterarExercicio.Text = "Alterar";
             this.buttonAlterarExercicio.UseVisualStyleBackColor = true;
+            this.buttonAlterarExercicio.Click += new System.EventHandler(this.buttonAlterarExercicio_Click);
             // 
             // tabPage4
             // 
@@ -923,7 +929,7 @@
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.ComboBox comboBoxGeneroSecretaria;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.TextBox textBoxNomeSecretaria;
+        private System.Windows.Forms.TextBox textBoxNameSecretaria;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
