@@ -161,9 +161,14 @@ namespace projeto_SIS
                     request.Method = Method.DELETE;
                     request.AddHeader("Accept", "application/json");
                     request.AddHeader("Content-Type", "application/json");
-                    request.AddHeader("ACCESS-TOKEN", access_token);                   
+                    request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    Utils.escreverParaFicheiro("PEDIDO - APAGAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
 
                     IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro2("RESPOSTA - APAGAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
 
                     listBoxSecretarias.DataSource = null;
@@ -251,7 +256,12 @@ namespace projeto_SIS
                             );
                     }
 
+                    Utils.escreverParaFicheiro("PEDIDO - ALTERAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+
                     IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro2("RESPOSTA - ALTERAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                     listBoxSecretarias.DataSource = null;
                     ListarSecretarias();
@@ -317,7 +327,13 @@ namespace projeto_SIS
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("ACCESS-TOKEN", access_token);
 
+                Utils.escreverParaFicheiro("PEDIDO - LISTAR EXERCÍCIOS", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
                 IRestResponse response = client.Execute(request);
+
+                Utils.escreverParaFicheiro2("RESPOSTA - LISTAR EXERCÍCIOS", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+
                 string json = response.Content;
 
                 exercicios = JsonConvert.DeserializeObject<List<Exercicio>>(json);
@@ -367,7 +383,11 @@ namespace projeto_SIS
                          }
                         );
 
+                Utils.escreverParaFicheiro("PEDIDO - ADICIONAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
                 IRestResponse response = client.Execute(request);
+
+                Utils.escreverParaFicheiro2("RESPOSTA - ADICIONAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                 listBoxExercicios.DataSource = null;
 
@@ -399,8 +419,11 @@ namespace projeto_SIS
                     request.AddHeader("Content-Type", "application/json");
                     request.AddHeader("ACCESS-TOKEN", access_token);
 
+                    Utils.escreverParaFicheiro("PEDIDO - APAGAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
                     IRestResponse response = client.Execute(request);
 
+                    Utils.escreverParaFicheiro2("RESPOSTA - APAGAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                     listBoxExercicios.DataSource = null;
 
@@ -476,15 +499,18 @@ namespace projeto_SIS
                                  tipo_exercicio = tipo
                              }
                     );
-                    
+
+
+                    Utils.escreverParaFicheiro("PEDIDO - ALTERAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
                     IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro2("RESPOSTA - ALTERAR EXERCÍCIO", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
 
                     listBoxExercicios.DataSource = null;
 
                     ListarExercicios();
-
                     
                 }
             }
