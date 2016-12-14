@@ -64,6 +64,8 @@
             this.buttonApagarSecretaria = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBoxAddTipoExercicio = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.textBoxAddDescricaoExercicio = new System.Windows.Forms.TextBox();
             this.buttonAdicionarExercicio = new System.Windows.Forms.Button();
@@ -72,6 +74,8 @@
             this.listBoxExercicios = new System.Windows.Forms.ListBox();
             this.buttonApagarExercicio = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.comboBoxTipoExercicio = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBoxDescricaoExercicio = new System.Windows.Forms.TextBox();
             this.buttonAlterarExercicio = new System.Windows.Forms.Button();
@@ -94,10 +98,6 @@
             this.label18 = new System.Windows.Forms.Label();
             this.listBoxFeedback = new System.Windows.Forms.ListBox();
             this.buttonApagarFeedback = new System.Windows.Forms.Button();
-            this.comboBoxTipoExercicio = new System.Windows.Forms.ComboBox();
-            this.comboBoxAddTipoExercicio = new System.Windows.Forms.ComboBox();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -514,6 +514,27 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Adicionar Exercício";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(42, 87);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(116, 17);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Tipo de Exercício";
+            // 
+            // comboBoxAddTipoExercicio
+            // 
+            this.comboBoxAddTipoExercicio.FormattingEnabled = true;
+            this.comboBoxAddTipoExercicio.Items.AddRange(new object[] {
+            "Aeróbico",
+            "Anaeróbico"});
+            this.comboBoxAddTipoExercicio.Location = new System.Drawing.Point(173, 84);
+            this.comboBoxAddTipoExercicio.Name = "comboBoxAddTipoExercicio";
+            this.comboBoxAddTipoExercicio.Size = new System.Drawing.Size(291, 24);
+            this.comboBoxAddTipoExercicio.TabIndex = 22;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -603,6 +624,27 @@
             this.groupBox1.TabIndex = 16;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alterar Exercício";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1, 87);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 17);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Tipo de Exercicio";
+            // 
+            // comboBoxTipoExercicio
+            // 
+            this.comboBoxTipoExercicio.FormattingEnabled = true;
+            this.comboBoxTipoExercicio.Items.AddRange(new object[] {
+            "Aeróbico",
+            "Anaeróbico"});
+            this.comboBoxTipoExercicio.Location = new System.Drawing.Point(125, 84);
+            this.comboBoxTipoExercicio.Name = "comboBoxTipoExercicio";
+            this.comboBoxTipoExercicio.Size = new System.Drawing.Size(220, 24);
+            this.comboBoxTipoExercicio.TabIndex = 24;
             // 
             // label2
             // 
@@ -860,48 +902,6 @@
             this.buttonApagarFeedback.TabIndex = 23;
             this.buttonApagarFeedback.Text = "Apagar";
             this.buttonApagarFeedback.UseVisualStyleBackColor = true;
-            // 
-            // comboBoxTipoExercicio
-            // 
-            this.comboBoxTipoExercicio.FormattingEnabled = true;
-            this.comboBoxTipoExercicio.Items.AddRange(new object[] {
-            "Aeróbico",
-            "Anaeróbico"});
-            this.comboBoxTipoExercicio.Location = new System.Drawing.Point(125, 84);
-            this.comboBoxTipoExercicio.Name = "comboBoxTipoExercicio";
-            this.comboBoxTipoExercicio.Size = new System.Drawing.Size(220, 24);
-            this.comboBoxTipoExercicio.TabIndex = 24;
-            // 
-            // comboBoxAddTipoExercicio
-            // 
-            this.comboBoxAddTipoExercicio.FormattingEnabled = true;
-            this.comboBoxAddTipoExercicio.Items.AddRange(new object[] {
-            "Aeróbico",
-            "Anaeróbico"});
-            this.comboBoxAddTipoExercicio.Location = new System.Drawing.Point(173, 84);
-            this.comboBoxAddTipoExercicio.Name = "comboBoxAddTipoExercicio";
-            this.comboBoxAddTipoExercicio.Size = new System.Drawing.Size(291, 24);
-            this.comboBoxAddTipoExercicio.TabIndex = 22;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(1, 87);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(116, 17);
-            this.label15.TabIndex = 25;
-            this.label15.Text = "Tipo de Exercicio";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(42, 87);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(116, 17);
-            this.label17.TabIndex = 23;
-            this.label17.Text = "Tipo de Exercício";
             // 
             // Dashboard
             // 

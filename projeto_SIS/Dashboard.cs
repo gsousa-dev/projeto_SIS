@@ -42,8 +42,14 @@ namespace projeto_SIS
                 request.AddHeader("ACCESS-TOKEN", access_token);
                 request.AddHeader("USER-TYPE", (2).ToString());
 
+                Utils.escreverParaFicheiro("PEDIDO - LISTA DE SECRETÁRIAS", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+
                 IRestResponse response = client.Execute(request);
                 string json = response.Content;
+
+                Utils.escreverParaFicheiro2("RESPOSTA - LISTA DE SECRETÁRIAS", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
 
                 secretarias = JsonConvert.DeserializeObject<List<User>>(json);
                 listBoxSecretarias.DataSource = secretarias;
@@ -115,7 +121,13 @@ namespace projeto_SIS
                          }
                         );
 
+                Utils.escreverParaFicheiro("PEDIDO - ADICIONAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+
                 IRestResponse response = client.Execute(request);
+
+                Utils.escreverParaFicheiro2("RESPOSTA - ADICIONAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
 
                 listBoxSecretarias.DataSource = null;
 
