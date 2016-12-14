@@ -24,7 +24,7 @@ namespace projeto_SIS
             this.access_token = access_token;
             InitializeComponent();
             ListarSecretarias();
-            //ListarExercicios();
+            ListarExercicios();
         }
 
         //SECRETARIAS
@@ -64,23 +64,22 @@ namespace projeto_SIS
                 MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                
-            if (textBoxAddPasswordSecretaria.Text.Length == 0)
+            else if (textBoxAddPasswordSecretaria.Text.Length == 0)
             {
                 MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (textBoxAddEmailSecretaria.Text.Length == 0)
+            else if (textBoxAddEmailSecretaria.Text.Length == 0)
             {
                 MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (textBoxAddNameSecretaria.Text.Length == 0)
+            else if (textBoxAddNameSecretaria.Text.Length == 0)
             {
                 MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxAddGeneroSecretaria.SelectedIndex == -1)
+            else if (comboBoxAddGeneroSecretaria.SelectedIndex == -1)
             {
                 MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -178,18 +177,17 @@ namespace projeto_SIS
                 MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
-            if (textBoxEmailSecretaria.Text.Length == 0)
+            else if (textBoxEmailSecretaria.Text.Length == 0)
             {
                 MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (textBoxNameSecretaria.Text.Length == 0)
+            else if (textBoxNameSecretaria.Text.Length == 0)
             {
                 MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            if (comboBoxGeneroSecretaria.SelectedIndex == -1)
+            else if (comboBoxGeneroSecretaria.SelectedIndex == -1)
             {
                 MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -226,8 +224,7 @@ namespace projeto_SIS
                              }
                             );
                     }
-
-                    if (textBoxPasswordSecretaria.Text.Length > 0)
+                    else if (textBoxPasswordSecretaria.Text.Length > 0)
                     {
                         request.AddJsonBody(
                              new
@@ -244,9 +241,7 @@ namespace projeto_SIS
 
                     IRestResponse response = client.Execute(request);
 
-
                     listBoxSecretarias.DataSource = null;
-
                     ListarSecretarias();
                 }
             }
@@ -269,7 +264,6 @@ namespace projeto_SIS
 
         private void listBoxSecretarias_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             User secretariaSelecionada = ((User)listBoxSecretarias.SelectedItem);
 
             if (secretariaSelecionada == null)
@@ -304,7 +298,7 @@ namespace projeto_SIS
             {
                 listBoxExercicios.DataSource = null;
 
-                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicio");
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicios");
                 RestRequest request = new RestRequest();
                 request.Method = Method.GET;
                 request.AddHeader("Accept", "application/json");

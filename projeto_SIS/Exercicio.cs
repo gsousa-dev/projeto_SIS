@@ -8,16 +8,24 @@ namespace projeto_SIS
 {
     class Exercicio
     {
-        private int id;
+        private int idExercicio;
         private string descricao;
+        private int tipo_exercicio;
 
-        public int ID { get { return id; } }
+        public Exercicio (int idExercicio, string descricao, int tipo_exercicio)
+        {
+            this.idExercicio = idExercicio;
+            this.descricao = descricao;
+            this.tipo_exercicio = tipo_exercicio;
+        }
+
+        public int ID { get { return idExercicio; } }
         public string Descricao { get { return descricao; } }
 
 
         public override string ToString()
         {
-            return id.ToString() + " -> " + descricao.ToString();
+            return idExercicio + " -> " + descricao;
         }
     }
 }

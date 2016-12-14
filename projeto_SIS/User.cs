@@ -42,7 +42,7 @@ namespace projeto_SIS
 
         public override string ToString()
         {
-            return "Username: " + this.username.ToString() + " | Email: " + this.email.ToString() + " | Nome: " + this.name.ToString() + " | Data de Nascimento: " + this.birthday.ToString() + " | Genero: " + this.gender.ToString();
+            return "Username: " + username + " | Email: " + email + " | Nome: " + name + " | Data de Nascimento: " + birthday + " | Genero: " + gender;
         }
     }
 }
