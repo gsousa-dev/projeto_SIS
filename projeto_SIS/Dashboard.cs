@@ -16,15 +16,18 @@ namespace projeto_SIS
     public partial class Dashboard : Form
     {
         public string access_token;
-        private List<User> secretarias;
+        private List<Secretaria> secretarias;
+        private List<Cliente> clientes;
         private List<Exercicio> exercicios;
 
         public Dashboard(string access_token)
         {
             this.access_token = access_token;
             InitializeComponent();
+
             ListarSecretarias();
             ListarExercicios();
+            ListarClientes();
         }
 
         //SECRETARIAS
@@ -51,7 +54,7 @@ namespace projeto_SIS
                 Utils.escreverParaFicheiro2("RESPOSTA - LISTA DE SECRETÁRIAS", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
 
-                secretarias = JsonConvert.DeserializeObject<List<User>>(json);
+                secretarias = JsonConvert.DeserializeObject<List<Secretaria>>(json);
                 listBoxSecretarias.DataSource = secretarias;
                 listBoxSecretarias.SelectedIndex = -1;
             }
@@ -155,7 +158,7 @@ namespace projeto_SIS
             {
                 if (listBoxSecretarias.SelectedIndex != -1)
                 {
-                    int id = ((User)listBoxSecretarias.SelectedItem).ID;
+                    int id = ((Secretaria)listBoxSecretarias.SelectedItem).ID;
                     RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
                     RestRequest request = new RestRequest();
                     request.Method = Method.DELETE;
@@ -214,7 +217,7 @@ namespace projeto_SIS
             {
                 if (listBoxSecretarias.SelectedIndex != -1)
                 {
-                    int id = ((User)listBoxSecretarias.SelectedItem).ID;
+                    int id = ((Secretaria)listBoxSecretarias.SelectedItem).ID;
                     RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
                     RestRequest request = new RestRequest();
                     request.Method = Method.PUT;
@@ -286,7 +289,7 @@ namespace projeto_SIS
 
         private void listBoxSecretarias_SelectedIndexChanged(object sender, EventArgs e)
         {
-            User secretariaSelecionada = ((User)listBoxSecretarias.SelectedItem);
+            Secretaria secretariaSelecionada = ((Secretaria)listBoxSecretarias.SelectedItem);
 
             if (secretariaSelecionada == null)
             {
@@ -517,6 +520,111 @@ namespace projeto_SIS
             catch (Exception)
             {
                 MessageBox.Show("Algo inesperado aconteceu ao tentar alterar um exercicio. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        // ---------------------------- CLIENTES ------------------------------------------
+
+        public void ListarClientes()
+        {
+            try
+            {
+                listBoxClientes.DataSource = null;
+
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
+                RestRequest request = new RestRequest();
+                request.Method = Method.GET;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("ACCESS-TOKEN", access_token);
+                request.AddHeader("USER-TYPE", (4).ToString());
+
+                Utils.escreverParaFicheiro("PEDIDO - LISTA DE CLIENTES", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+                IRestResponse response = client.Execute(request);
+                string json = response.Content;
+
+                Utils.escreverParaFicheiro2("RESPOSTA - LISTA DE CLIENTES", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+                clientes = JsonConvert.DeserializeObject<List<Cliente>>(json);
+                listBoxClientes.DataSource = clientes;
+                listBoxClientes.SelectedIndex = -1;
+
+                comboBoxAddPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar listar os clientes. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+
+        private void listBoxClientes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Cliente clienteSelecionado = ((Cliente)listBoxClientes.SelectedItem);
+
+            if (clienteSelecionado == null)
+            {
+                textBoxPasswordCliente.Text = "";
+                textBoxUsernameCliente.Text = "";
+                textBoxEmailCliente.Text = "";
+                textBoxNomeCliente.Text = "";
+                comboBoxGeneroCliente.SelectedIndex = -1;
+                comboBoxPTCliente.SelectedIndex = -1;
+            }
+            else
+            {
+                textBoxPasswordCliente.Text = "";
+                textBoxUsernameCliente.Text = clienteSelecionado.Username;
+                textBoxEmailCliente.Text = clienteSelecionado.Email;
+                textBoxNomeCliente.Text = clienteSelecionado.Name;
+                if (clienteSelecionado.Gender == "M")
+                    comboBoxGeneroCliente.SelectedIndex = 0;
+                if (clienteSelecionado.Gender == "F")
+                    comboBoxGeneroCliente.SelectedIndex = 1;
+                //comboBoxPTCliente.SelectedIndex == clienteSelecionado.PersonalTrainer;
+            }
+
+            comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBoxAddGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+
+        private void buttonRefreshListaClientes_Click(object sender, EventArgs e)
+        {
+            ListarClientes();
+        }
+
+        private void buttonApagarCliente_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBoxClientes.SelectedIndex != -1)
+                {
+                    int id = ((Cliente)listBoxClientes.SelectedItem).ID;
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
+                    RestRequest request = new RestRequest();
+                    request.Method = Method.DELETE;
+                    request.AddHeader("Accept", "application/json");
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    Utils.escreverParaFicheiro("PEDIDO - APAGAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+                    IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro2("RESPOSTA - APAGAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+                    listBoxClientes.DataSource = null;
+
+                    ListarClientes();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar apagar um cliente. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
