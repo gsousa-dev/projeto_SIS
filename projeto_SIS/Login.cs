@@ -45,10 +45,12 @@ namespace projeto_SIS
 
                         IRestResponse response = client.Execute(request);
 
-                        Utils.escreverParaFicheiro("Pedido", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+                        Utils.escreverParaFicheiro("PEDIDO - LOGIN", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
                         string content = response.Content;
                         string access_token = JObject.Parse(content).Property("access_token").Value.ToString();
+
+                        Utils.escreverParaFicheiro2("RESPOSTA - LOGIN", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                         if (access_token != null)
                         {
