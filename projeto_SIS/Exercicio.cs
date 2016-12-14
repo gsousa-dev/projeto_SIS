@@ -21,6 +21,8 @@ namespace projeto_SIS
 
         public int ID { get { return idExercicio; } }
         public string Descricao { get { return descricao; } }
+        public int Tipo_exercicio { get { return tipo_exercicio; } }
+
 
 
         public override string ToString()

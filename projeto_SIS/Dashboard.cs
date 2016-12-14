@@ -312,6 +312,9 @@ namespace projeto_SIS
                 listBoxExercicios.DataSource = exercicios;
 
                 listBoxExercicios.SelectedIndex = -1;
+
+                comboBoxTipoExercicio.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxAddTipoExercicio.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception)
             {
@@ -331,17 +334,24 @@ namespace projeto_SIS
 
             try
             {
-                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicio");
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicios");
                 RestRequest request = new RestRequest();
                 request.Method = Method.POST;
                 request.AddHeader("Accept", "application/json");
                 request.AddHeader("Content-Type", "application/json");
                 request.AddHeader("ACCESS-TOKEN", access_token);
 
+                string tipo = null;
+                if (comboBoxAddTipoExercicio.SelectedIndex == 0)
+                    tipo = "1";
+                else if (comboBoxAddTipoExercicio.SelectedIndex == 1)
+                    tipo = "2";
+
                 request.AddJsonBody(
                          new
                          {
                              descricao = textBoxAddDescricaoExercicio.Text,
+                             tipo_exercicio = tipo
                          }
                         );
 
@@ -352,6 +362,7 @@ namespace projeto_SIS
                 ListarExercicios();
 
                 textBoxAddDescricaoExercicio.Text = "";
+                comboBoxAddTipoExercicio.SelectedIndex = -1;
                 
 
             }
@@ -369,7 +380,7 @@ namespace projeto_SIS
                 if (listBoxExercicios.SelectedIndex != -1)
                 {
                     int id = ((Exercicio)listBoxExercicios.SelectedItem).ID;
-                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicio/" + id);
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicios/" + id);
                     RestRequest request = new RestRequest();
                     request.Method = Method.DELETE;
                     request.AddHeader("Accept", "application/json");
@@ -403,10 +414,15 @@ namespace projeto_SIS
             if (exercicioSelecionado == null)
             {
                 textBoxDescricaoExercicio.Text = "";
+                comboBoxTipoExercicio.SelectedIndex = -1;
             }
             else
             {
                 textBoxDescricaoExercicio.Text = exercicioSelecionado.Descricao;
+                if (exercicioSelecionado.Tipo_exercicio == 1)
+                    comboBoxTipoExercicio.SelectedIndex = 0;
+                if (exercicioSelecionado.Tipo_exercicio == 2)
+                    comboBoxTipoExercicio.SelectedIndex = 1;
             }
         }
 
@@ -417,23 +433,35 @@ namespace projeto_SIS
                 MessageBox.Show("Introduza a decrição do exercicio", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            if (comboBoxTipoExercicio.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escolha o tipo de exercício", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             try
             {
                 if (listBoxExercicios.SelectedIndex != -1)
                 {
                     int id = ((Exercicio)listBoxExercicios.SelectedItem).ID;
-                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicio/" + id);
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicios/" + id);
                     RestRequest request = new RestRequest();
                     request.Method = Method.PUT;
                     request.AddHeader("Accept", "application/json");
                     request.AddHeader("Content-Type", "application/json");
                     request.AddHeader("ACCESS-TOKEN", access_token);
 
+                    string tipo = null;
+                    if (comboBoxTipoExercicio.SelectedIndex == 0)
+                        tipo = "1";
+                    else if (comboBoxTipoExercicio.SelectedIndex == 1)
+                        tipo = "2";
+
                     request.AddJsonBody(
                         new
                              {
-                                 descricao = textBoxDescricaoExercicio.Text
+                                 descricao = textBoxDescricaoExercicio.Text,
+                                 tipo_exercicio = tipo
                              }
                     );
                     
@@ -444,6 +472,8 @@ namespace projeto_SIS
                     listBoxExercicios.DataSource = null;
 
                     ListarExercicios();
+
+                    
                 }
             }
             catch (Exception)

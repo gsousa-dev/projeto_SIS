@@ -94,6 +94,10 @@
             this.label18 = new System.Windows.Forms.Label();
             this.listBoxFeedback = new System.Windows.Forms.ListBox();
             this.buttonApagarFeedback = new System.Windows.Forms.Button();
+            this.comboBoxTipoExercicio = new System.Windows.Forms.ComboBox();
+            this.comboBoxAddTipoExercicio = new System.Windows.Forms.ComboBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -496,6 +500,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.comboBoxAddTipoExercicio);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.textBoxAddDescricaoExercicio);
             this.groupBox2.Controls.Add(this.buttonAdicionarExercicio);
@@ -584,6 +590,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.comboBoxTipoExercicio);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.textBoxDescricaoExercicio);
             this.groupBox1.Controls.Add(this.buttonAlterarExercicio);
@@ -599,7 +607,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(8, 42);
+            this.label2.Location = new System.Drawing.Point(46, 44);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 17);
@@ -608,10 +616,10 @@
             // 
             // textBoxDescricaoExercicio
             // 
-            this.textBoxDescricaoExercicio.Location = new System.Drawing.Point(87, 42);
+            this.textBoxDescricaoExercicio.Location = new System.Drawing.Point(125, 42);
             this.textBoxDescricaoExercicio.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDescricaoExercicio.Name = "textBoxDescricaoExercicio";
-            this.textBoxDescricaoExercicio.Size = new System.Drawing.Size(258, 22);
+            this.textBoxDescricaoExercicio.Size = new System.Drawing.Size(220, 22);
             this.textBoxDescricaoExercicio.TabIndex = 23;
             // 
             // buttonAlterarExercicio
@@ -853,6 +861,48 @@
             this.buttonApagarFeedback.Text = "Apagar";
             this.buttonApagarFeedback.UseVisualStyleBackColor = true;
             // 
+            // comboBoxTipoExercicio
+            // 
+            this.comboBoxTipoExercicio.FormattingEnabled = true;
+            this.comboBoxTipoExercicio.Items.AddRange(new object[] {
+            "Aeróbico",
+            "Anaeróbico"});
+            this.comboBoxTipoExercicio.Location = new System.Drawing.Point(125, 84);
+            this.comboBoxTipoExercicio.Name = "comboBoxTipoExercicio";
+            this.comboBoxTipoExercicio.Size = new System.Drawing.Size(220, 24);
+            this.comboBoxTipoExercicio.TabIndex = 24;
+            // 
+            // comboBoxAddTipoExercicio
+            // 
+            this.comboBoxAddTipoExercicio.FormattingEnabled = true;
+            this.comboBoxAddTipoExercicio.Items.AddRange(new object[] {
+            "Aeróbico",
+            "Anaeróbico"});
+            this.comboBoxAddTipoExercicio.Location = new System.Drawing.Point(173, 84);
+            this.comboBoxAddTipoExercicio.Name = "comboBoxAddTipoExercicio";
+            this.comboBoxAddTipoExercicio.Size = new System.Drawing.Size(291, 24);
+            this.comboBoxAddTipoExercicio.TabIndex = 22;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(1, 87);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(116, 17);
+            this.label15.TabIndex = 25;
+            this.label15.Text = "Tipo de Exercicio";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(42, 87);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(116, 17);
+            this.label17.TabIndex = 23;
+            this.label17.Text = "Tipo de Exercício";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -958,5 +1008,9 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.DateTimePicker dateTimePickerAddSecretaria;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.ComboBox comboBoxAddTipoExercicio;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.ComboBox comboBoxTipoExercicio;
     }
 }
