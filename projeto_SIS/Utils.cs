@@ -14,6 +14,7 @@ namespace projeto_SIS
         public static void escreverParaFicheiro(string RespostaOuPedido, string url, string metodo, IList<Parameter> parametros) {
             using (StreamWriter writeText = new StreamWriter("log.txt", true)) {
                 DateTime agora = DateTime.Now;
+                writeText.WriteLine("----------------------------------------------------------------------------------------------------------------------------------------------");
                 writeText.WriteLine(" ");
                 writeText.WriteLine(agora.ToShortDateString() + " " + agora.ToLongTimeString() + "\t \t ------" + RespostaOuPedido + "------");
                 writeText.WriteLine(" URL ->" + url + " | Metodo: " + metodo + "\n");

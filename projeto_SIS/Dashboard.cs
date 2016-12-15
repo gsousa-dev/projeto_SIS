@@ -19,6 +19,7 @@ namespace projeto_SIS
         private List<Secretaria> secretarias;
         private List<Cliente> clientes;
         private List<Exercicio> exercicios;
+        private List<PersonalTrainer> personalTrainers;
 
         public Dashboard(string access_token)
         {
@@ -553,6 +554,50 @@ namespace projeto_SIS
 
                 comboBoxAddPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
                 comboBoxPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                comboBoxGeneroCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxAddGeneroCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                ListarPersonalTrainers();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar listar os clientes. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+        public void ListarPersonalTrainers()
+        {
+            try
+            {
+                listBoxClientes.DataSource = null;
+
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
+                RestRequest request = new RestRequest();
+                request.Method = Method.GET;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("ACCESS-TOKEN", access_token);
+                request.AddHeader("USER-TYPE", (3).ToString());
+
+                Utils.escreverParaFicheiro("PEDIDO - LISTA DE PERSONAL TRAINERS", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+                IRestResponse response = client.Execute(request);
+                string json = response.Content;
+
+                Utils.escreverParaFicheiro2("RESPOSTA - LISTA DE PERSONAL TRAINERS", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+                personalTrainers = JsonConvert.DeserializeObject<List<PersonalTrainer>>(json);
+                comboBoxPTCliente.DataSource = personalTrainers;
+                comboBoxPTCliente.SelectedIndex = -1;
+
+                comboBoxAddPTCliente.DataSource = personalTrainers;
+                comboBoxAddPTCliente.SelectedIndex = -1;
+
+
+                comboBoxAddPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
+                comboBoxPTCliente.DropDownStyle = ComboBoxStyle.DropDownList;
             }
             catch (Exception)
             {
@@ -585,7 +630,8 @@ namespace projeto_SIS
                     comboBoxGeneroCliente.SelectedIndex = 0;
                 if (clienteSelecionado.Gender == "F")
                     comboBoxGeneroCliente.SelectedIndex = 1;
-                //comboBoxPTCliente.SelectedIndex == clienteSelecionado.PersonalTrainer;
+
+
             }
 
             comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -625,6 +671,195 @@ namespace projeto_SIS
             catch (Exception)
             {
                 MessageBox.Show("Algo inesperado aconteceu ao tentar apagar um cliente. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void buttonAddCliente_Click(object sender, EventArgs e)
+        {
+            if (textBoxAddUsernameCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (textBoxAddPasswordCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (textBoxAddEmailCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (textBoxAddNomeCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (comboBoxAddGeneroCliente.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escolha o genero do cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (comboBoxAddPTCliente.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escolha um Personal Trainer para este cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user");
+                RestRequest request = new RestRequest();
+                request.Method = Method.POST;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+                request.AddHeader("ACCESS-TOKEN", access_token);
+
+
+                string birthday = dateTimePickerAddDataNascCliente.Value.ToString("yyyy-MM-dd");
+                string gender = null;
+                if (comboBoxAddGeneroCliente.Text == "Masculino")
+                    gender = "M";
+                else if (comboBoxAddGeneroCliente.Text == "Feminino")
+                    gender = "F";
+                PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
+                int idPersonalTrainer = personalTrainerSelecionado.ID;
+                request.AddJsonBody(
+                         new
+                         {
+                             user_type = 4,
+                             username = textBoxAddUsernameCliente.Text,
+                             password = textBoxAddPasswordCliente.Text,
+                             email = textBoxAddEmailCliente.Text,
+                             name = textBoxAddNomeCliente.Text,
+                             birthday = birthday,
+                             gender = gender,
+                             idPersonalTrainer = idPersonalTrainer
+                         }
+                        );
+
+                Utils.escreverParaFicheiro("PEDIDO - ADICIONAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+
+                IRestResponse response = client.Execute(request);
+
+                Utils.escreverParaFicheiro2("RESPOSTA - ADICIONAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+
+                listBoxClientes.DataSource = null;
+
+                ListarClientes();
+
+                textBoxAddUsernameCliente.Text = "";
+                textBoxAddPasswordCliente.Text = "";
+                textBoxAddEmailCliente.Text = "";
+                textBoxAddNomeCliente.Text = "";
+                comboBoxAddGeneroCliente.SelectedIndex = -1;
+                comboBoxAddPTCliente.SelectedIndex = -1;
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar adicionar um cliente. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void buttonAlterarCliente_Click(object sender, EventArgs e)
+        {
+            if (textBoxUsernameCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (textBoxEmailCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (textBoxNomeCliente.Text.Length == 0)
+            {
+                MessageBox.Show("Introduza dados em todos os campos (menos password, é apenas usada se quiser alterar a password)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (comboBoxGeneroCliente.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escolha o genero do cliente)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (comboBoxPTCliente.SelectedIndex == -1)
+            {
+                MessageBox.Show("Atribua um Personal Trainer ao cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                if (listBoxClientes.SelectedIndex != -1)
+                {
+                    int id = ((Cliente)listBoxClientes.SelectedItem).ID;
+                    RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
+                    RestRequest request = new RestRequest();
+                    request.Method = Method.PUT;
+                    request.AddHeader("Accept", "application/json");
+                    request.AddHeader("Content-Type", "application/json");
+                    request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    string gender = null;
+                    if (comboBoxGeneroCliente.Text == "Masculino")
+                        gender = "M";
+                    else if (comboBoxGeneroCliente.Text == "Feminino")
+                        gender = "F";
+                    PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
+                    int idPersonalTrainer = personalTrainerSelecionado.ID;
+
+                    if (textBoxPasswordCliente.Text.Length == 0)
+                    {
+                        request.AddJsonBody(
+                             new
+                             {
+                                 user_type = 4,
+                                 username = textBoxUsernameCliente.Text,
+                                 email = textBoxEmailCliente.Text,
+                                 name = textBoxNomeCliente.Text,
+                                 gender = gender,
+                                 idPersonalTrainer = idPersonalTrainer
+                             }
+                            );
+                    }
+                    else if (textBoxPasswordCliente.Text.Length > 0)
+                    {
+                        request.AddJsonBody(
+                             new
+                             {
+                                 user_type = 4,
+                                 username = textBoxUsernameSecretaria.Text,
+                                 password = textBoxPasswordSecretaria.Text,
+                                 email = textBoxEmailSecretaria.Text,
+                                 name = textBoxNameSecretaria.Text,
+                                 gender = gender,
+                                 idPersonalTrainer = idPersonalTrainer
+
+                             }
+                            );
+                    }
+
+                    Utils.escreverParaFicheiro("PEDIDO - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+
+                    IRestResponse response = client.Execute(request);
+
+                    Utils.escreverParaFicheiro2("RESPOSTA - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+                    listBoxClientes.DataSource = null;
+                    ListarClientes();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar apagar uma secretária. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

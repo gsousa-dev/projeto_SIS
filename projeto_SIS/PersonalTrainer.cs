@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace projeto_SIS
 {
-    class Cliente
+    class PersonalTrainer
     {
         private int id, user_type, status, created_at, updated_at;
         private string username, auth_key, password_hash, password_reset_token, email, name, birthday, gender, profile_picture;
 
 
-        public Cliente(int id, int user_type, string username, string auth_key, string password_hash, string password_reset_token, string email, int status, int created_at, int updated_at, string name, string birthday, string gender, string profile_picture, int idPersonalTrainer)
+        public PersonalTrainer(int id, int user_type, string username, string auth_key, string password_hash, string password_reset_token, string email, int status, int created_at, int updated_at, string name, string birthday, string gender, string profile_picture)
         {
             this.id = id;
             this.user_type = user_type;
@@ -39,9 +39,11 @@ namespace projeto_SIS
         public string Gender { get { return gender; } }
 
 
+
         public override string ToString()
         {
-            return "Username: " + username + " | Email: " + email + " | Nome: " + name + " | Data de Nascimento: " + birthday + " | Genero: " + gender + " | Personal Trainer: " + idPersonalTrainer;
+            return name;
         }
     }
+
 }

@@ -320,7 +320,7 @@
             // buttonAlterarSecretaria
             // 
             this.buttonAlterarSecretaria.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAlterarSecretaria.Location = new System.Drawing.Point(278, 292);
+            this.buttonAlterarSecretaria.Location = new System.Drawing.Point(278, 286);
             this.buttonAlterarSecretaria.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonAlterarSecretaria.Name = "buttonAlterarSecretaria";
             this.buttonAlterarSecretaria.Size = new System.Drawing.Size(119, 37);
@@ -877,6 +877,7 @@
             this.buttonAlterarCliente.TabIndex = 4;
             this.buttonAlterarCliente.Text = "Alterar";
             this.buttonAlterarCliente.UseVisualStyleBackColor = true;
+            this.buttonAlterarCliente.Click += new System.EventHandler(this.buttonAlterarCliente_Click);
             // 
             // groupBox8
             // 
@@ -1043,6 +1044,7 @@
             this.buttonAddCliente.TabIndex = 4;
             this.buttonAddCliente.Text = "Adicionar";
             this.buttonAddCliente.UseVisualStyleBackColor = true;
+            this.buttonAddCliente.Click += new System.EventHandler(this.buttonAddCliente_Click);
             // 
             // buttonRefreshListaClientes
             // 
