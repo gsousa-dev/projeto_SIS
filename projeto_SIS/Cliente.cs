@@ -41,7 +41,7 @@ namespace projeto_SIS
 
         public override string ToString()
         {
-            return "Username: " + username + " | Email: " + email + " | Nome: " + name + " | Data de Nascimento: " + birthday + " | Genero: " + gender + " | Personal Trainer: " + idPersonalTrainer;
+            return "Username: " + username + " | Email: " + email + " | Nome: " + name + " | Data de Nascimento: " + birthday + " | Genero: " + gender;
         }
     }
 }

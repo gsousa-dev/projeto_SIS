@@ -630,8 +630,6 @@ namespace projeto_SIS
                     comboBoxGeneroCliente.SelectedIndex = 0;
                 if (clienteSelecionado.Gender == "F")
                     comboBoxGeneroCliente.SelectedIndex = 1;
-
-
             }
 
             comboBoxGeneroSecretaria.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -767,6 +765,7 @@ namespace projeto_SIS
             }
         }
 
+
         private void buttonAlterarCliente_Click(object sender, EventArgs e)
         {
             if (textBoxUsernameCliente.Text.Length == 0)
@@ -812,6 +811,7 @@ namespace projeto_SIS
                         gender = "M";
                     else if (comboBoxGeneroCliente.Text == "Feminino")
                         gender = "F";
+
                     PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
                     int idPersonalTrainer = personalTrainerSelecionado.ID;
 
@@ -847,21 +847,23 @@ namespace projeto_SIS
                     }
 
                     Utils.escreverParaFicheiro("PEDIDO - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
-
-
+                    
                     IRestResponse response = client.Execute(request);
 
                     Utils.escreverParaFicheiro2("RESPOSTA - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                     listBoxClientes.DataSource = null;
+
                     ListarClientes();
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo inesperado aconteceu ao tentar apagar uma secretária. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Algo inesperado aconteceu ao tentar alterar um cliente. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
+
+       
     }
 }
