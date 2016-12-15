@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.labelNomeUser = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -114,25 +115,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this.listBoxClientes = new System.Windows.Forms.ListBox();
             this.buttonApagarCliente = new System.Windows.Forms.Button();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.buttonAlterarFeedback = new System.Windows.Forms.Button();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.buttonAddFeedback = new System.Windows.Forms.Button();
-            this.buttonRefreshFeedback = new System.Windows.Forms.Button();
-            this.label18 = new System.Windows.Forms.Label();
-            this.listBoxFeedback = new System.Windows.Forms.ListBox();
-            this.buttonApagarFeedback = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -143,9 +125,6 @@
             this.tabPage3.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox8.SuspendLayout();
-            this.tabPage4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelNomeUser
@@ -174,7 +153,6 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(16, 36);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -1090,233 +1068,6 @@
             this.buttonApagarCliente.UseVisualStyleBackColor = true;
             this.buttonApagarCliente.Click += new System.EventHandler(this.buttonApagarCliente_Click);
             // 
-            // tabPage4
-            // 
-            this.tabPage4.Controls.Add(this.groupBox5);
-            this.tabPage4.Controls.Add(this.groupBox3);
-            this.tabPage4.Controls.Add(this.buttonRefreshFeedback);
-            this.tabPage4.Controls.Add(this.label18);
-            this.tabPage4.Controls.Add(this.listBoxFeedback);
-            this.tabPage4.Controls.Add(this.buttonApagarFeedback);
-            this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1180, 666);
-            this.tabPage4.TabIndex = 0;
-            this.tabPage4.Text = "FeedBack";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.comboBox1);
-            this.groupBox5.Controls.Add(this.label19);
-            this.groupBox5.Controls.Add(this.label23);
-            this.groupBox5.Controls.Add(this.textBox9);
-            this.groupBox5.Controls.Add(this.buttonAlterarFeedback);
-            this.groupBox5.Location = new System.Drawing.Point(454, 322);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox5.Size = new System.Drawing.Size(357, 191);
-            this.groupBox5.TabIndex = 28;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Alterar Feedback";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(295, 88);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 17);
-            this.label5.TabIndex = 30;
-            this.label5.Text = "Stars";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "0",
-            "0,5",
-            "1",
-            "1,5",
-            "2",
-            "2,5",
-            "3",
-            "3,5",
-            "4",
-            "4,5",
-            "5"});
-            this.comboBox1.Location = new System.Drawing.Point(173, 85);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(116, 24);
-            this.comboBox1.TabIndex = 29;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(87, 85);
-            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(49, 17);
-            this.label19.TabIndex = 28;
-            this.label19.Text = "Rating";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(62, 44);
-            this.label23.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(77, 17);
-            this.label23.TabIndex = 18;
-            this.label23.Text = "Mensagem";
-            // 
-            // textBox9
-            // 
-            this.textBox9.Location = new System.Drawing.Point(173, 39);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(163, 22);
-            this.textBox9.TabIndex = 21;
-            // 
-            // buttonAlterarFeedback
-            // 
-            this.buttonAlterarFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAlterarFeedback.Location = new System.Drawing.Point(217, 129);
-            this.buttonAlterarFeedback.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonAlterarFeedback.Name = "buttonAlterarFeedback";
-            this.buttonAlterarFeedback.Size = new System.Drawing.Size(119, 37);
-            this.buttonAlterarFeedback.TabIndex = 4;
-            this.buttonAlterarFeedback.Text = "Alterar";
-            this.buttonAlterarFeedback.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Controls.Add(this.comboBox2);
-            this.groupBox3.Controls.Add(this.label4);
-            this.groupBox3.Controls.Add(this.label16);
-            this.groupBox3.Controls.Add(this.textBox5);
-            this.groupBox3.Controls.Add(this.buttonAddFeedback);
-            this.groupBox3.Location = new System.Drawing.Point(819, 322);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(356, 191);
-            this.groupBox3.TabIndex = 27;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Adicionar Feedback";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(290, 88);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(41, 17);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Stars";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "0",
-            "0,5",
-            "1",
-            "1,5",
-            "2",
-            "2,5",
-            "3",
-            "3,5",
-            "4",
-            "4,5",
-            "5"});
-            this.comboBox2.Location = new System.Drawing.Point(139, 88);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(145, 24);
-            this.comboBox2.TabIndex = 30;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(53, 85);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
-            this.label4.TabIndex = 28;
-            this.label4.Text = "Rating";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(53, 44);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(77, 17);
-            this.label16.TabIndex = 18;
-            this.label16.Text = "Mensagem";
-            // 
-            // textBox5
-            // 
-            this.textBox5.Location = new System.Drawing.Point(139, 41);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(192, 22);
-            this.textBox5.TabIndex = 21;
-            // 
-            // buttonAddFeedback
-            // 
-            this.buttonAddFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddFeedback.Location = new System.Drawing.Point(212, 129);
-            this.buttonAddFeedback.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonAddFeedback.Name = "buttonAddFeedback";
-            this.buttonAddFeedback.Size = new System.Drawing.Size(119, 37);
-            this.buttonAddFeedback.TabIndex = 4;
-            this.buttonAddFeedback.Text = "Adicionar";
-            this.buttonAddFeedback.UseVisualStyleBackColor = true;
-            // 
-            // buttonRefreshFeedback
-            // 
-            this.buttonRefreshFeedback.Location = new System.Drawing.Point(35, 354);
-            this.buttonRefreshFeedback.Margin = new System.Windows.Forms.Padding(4);
-            this.buttonRefreshFeedback.Name = "buttonRefreshFeedback";
-            this.buttonRefreshFeedback.Size = new System.Drawing.Size(124, 37);
-            this.buttonRefreshFeedback.TabIndex = 26;
-            this.buttonRefreshFeedback.Text = "Refresh List";
-            this.buttonRefreshFeedback.UseVisualStyleBackColor = true;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(3, 300);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(530, 17);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "NOTA: Para Editar ou Apagar uma Secretária tem que o selecionar na lista a cima.";
-            // 
-            // listBoxFeedback
-            // 
-            this.listBoxFeedback.FormattingEnabled = true;
-            this.listBoxFeedback.ItemHeight = 16;
-            this.listBoxFeedback.Location = new System.Drawing.Point(6, 6);
-            this.listBoxFeedback.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.listBoxFeedback.Name = "listBoxFeedback";
-            this.listBoxFeedback.Size = new System.Drawing.Size(1169, 292);
-            this.listBoxFeedback.TabIndex = 24;
-            // 
-            // buttonApagarFeedback
-            // 
-            this.buttonApagarFeedback.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonApagarFeedback.Location = new System.Drawing.Point(226, 354);
-            this.buttonApagarFeedback.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.buttonApagarFeedback.Name = "buttonApagarFeedback";
-            this.buttonApagarFeedback.Size = new System.Drawing.Size(124, 37);
-            this.buttonApagarFeedback.TabIndex = 23;
-            this.buttonApagarFeedback.Text = "Apagar";
-            this.buttonApagarFeedback.UseVisualStyleBackColor = true;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1325,8 +1076,11 @@
             this.Controls.Add(this.labelNomeUser);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(1241, 799);
+            this.MinimumSize = new System.Drawing.Size(1241, 799);
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Dashboard";
@@ -1349,12 +1103,6 @@
             this.groupBox7.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
-            this.tabPage4.ResumeLayout(false);
-            this.tabPage4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1383,7 +1131,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button buttonAlterarExercicio;
-        private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxAddPasswordSecretaria;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -1406,24 +1153,6 @@
         private System.Windows.Forms.TextBox textBoxEmailSecretaria;
         private System.Windows.Forms.TextBox textBoxUsernameSecretaria;
         private System.Windows.Forms.Button buttonAlterarSecretaria;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.Button buttonAlterarFeedback;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button buttonAddFeedback;
-        private System.Windows.Forms.Button buttonRefreshFeedback;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ListBox listBoxFeedback;
-        private System.Windows.Forms.Button buttonApagarFeedback;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxPasswordSecretaria;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.DateTimePicker dateTimePickerAddSecretaria;

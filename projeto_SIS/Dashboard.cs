@@ -123,7 +123,7 @@ namespace projeto_SIS
                              birthday = birthday,
                              gender = gender
                          }
-                        );
+                );
 
                 Utils.escreverParaFicheiro("PEDIDO - ADICIONAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
@@ -162,10 +162,14 @@ namespace projeto_SIS
                     int id = ((Secretaria)listBoxSecretarias.SelectedItem).ID;
                     RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
                     RestRequest request = new RestRequest();
-                    request.Method = Method.DELETE;
+                    request.Method = Method.PUT;
                     request.AddHeader("Accept", "application/json");
                     request.AddHeader("Content-Type", "application/json");
                     request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    request.AddJsonBody(new{status = 0});
+
+                    
 
                     Utils.escreverParaFicheiro("PEDIDO - APAGAR SECRETÁRIA", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
@@ -567,11 +571,11 @@ namespace projeto_SIS
             }
 
         }
+
         public void ListarPersonalTrainers()
         {
             try
             {
-                listBoxClientes.DataSource = null;
 
                 RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/filter-by-type-of-user");
                 RestRequest request = new RestRequest();
@@ -650,10 +654,12 @@ namespace projeto_SIS
                     int id = ((Cliente)listBoxClientes.SelectedItem).ID;
                     RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
                     RestRequest request = new RestRequest();
-                    request.Method = Method.DELETE;
+                    request.Method = Method.PUT;
                     request.AddHeader("Accept", "application/json");
                     request.AddHeader("Content-Type", "application/json");
                     request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    request.AddJsonBody(new { status = 0 });
 
                     Utils.escreverParaFicheiro("PEDIDO - APAGAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
