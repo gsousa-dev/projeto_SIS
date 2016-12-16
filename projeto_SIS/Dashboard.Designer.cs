@@ -115,6 +115,8 @@
             this.label37 = new System.Windows.Forms.Label();
             this.listBoxClientes = new System.Windows.Forms.ListBox();
             this.buttonApagarCliente = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.labelCountExercicios = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -151,8 +153,8 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(16, 36);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
@@ -501,6 +503,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.labelCountExercicios);
+            this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.buttonRefreshExercícios);
             this.tabPage1.Controls.Add(this.label9);
@@ -1068,6 +1072,24 @@
             this.buttonApagarCliente.UseVisualStyleBackColor = true;
             this.buttonApagarCliente.Click += new System.EventHandler(this.buttonApagarCliente_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(20, 438);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(149, 17);
+            this.label4.TabIndex = 28;
+            this.label4.Text = "Nº Total de exercícios:";
+            // 
+            // labelCountExercicios
+            // 
+            this.labelCountExercicios.AutoSize = true;
+            this.labelCountExercicios.Location = new System.Drawing.Point(175, 438);
+            this.labelCountExercicios.Name = "labelCountExercicios";
+            this.labelCountExercicios.Size = new System.Drawing.Size(79, 17);
+            this.labelCountExercicios.TabIndex = 29;
+            this.labelCountExercicios.Text = "nExercicios";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1196,5 +1218,7 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.ListBox listBoxClientes;
         private System.Windows.Forms.Button buttonApagarCliente;
+        private System.Windows.Forms.Label labelCountExercicios;
+        private System.Windows.Forms.Label label4;
     }
 }

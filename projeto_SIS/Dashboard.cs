@@ -31,7 +31,7 @@ namespace projeto_SIS
             ListarClientes();
         }
 
-        //SECRETARIAS
+        // ------------------------------------------ SECRETARIAS ----------------------------------------------------------------
         public void ListarSecretarias()
         {
             try
@@ -61,7 +61,7 @@ namespace projeto_SIS
             }
             catch (Exception)
             {
-                MessageBox.Show("Algo inesperado aconteceu ao tentar listar as secretárias. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Algo inesperado aconteceu ao tentar listar as secretárias. Verifique se está conectado ao servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             
@@ -351,6 +351,8 @@ namespace projeto_SIS
 
                 comboBoxTipoExercicio.DropDownStyle = ComboBoxStyle.DropDownList;
                 comboBoxAddTipoExercicio.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                getCount();
             }
             catch (Exception)
             {
@@ -359,6 +361,38 @@ namespace projeto_SIS
             }
             
         }
+
+        public void getCount() {
+            try
+            {
+                labelCountExercicios.Text = "";
+
+                RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/exercicio/count");
+                RestRequest request = new RestRequest();
+                request.Method = Method.GET;
+                request.AddHeader("Accept", "application/json");
+                request.AddHeader("Content-Type", "application/json");
+
+                Utils.escreverParaFicheiro("PEDIDO - COUNT EXERCÍCIOS", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
+
+                IRestResponse response = client.Execute(request);
+
+                Utils.escreverParaFicheiro2("RESPOSTA - COUNT EXERCÍCIOS", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
+
+
+                string json = response.Content;
+    
+
+                labelCountExercicios.Text = json.Replace("\"", "");
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Algo inesperado aconteceu ao tentar buscar o count exercícios. Verifique se está conectado com o servidor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
 
         private void buttonAdicionarExercicio_Click(object sender, EventArgs e)
         {
@@ -678,6 +712,7 @@ namespace projeto_SIS
                 return;
             }
         }
+
 
         private void buttonAddCliente_Click(object sender, EventArgs e)
         {
