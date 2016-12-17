@@ -661,6 +661,7 @@ namespace projeto_SIS
             else
             {
                 textBoxPasswordCliente.Text = "";
+                
                 textBoxUsernameCliente.Text = clienteSelecionado.Username;
                 textBoxEmailCliente.Text = clienteSelecionado.Email;
                 textBoxNomeCliente.Text = clienteSelecionado.Name;
@@ -765,6 +766,7 @@ namespace projeto_SIS
                     gender = "F";
                 PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
                 int idPersonalTrainer = personalTrainerSelecionado.ID;
+
                 request.AddJsonBody(
                          new
                          {
@@ -775,7 +777,7 @@ namespace projeto_SIS
                              name = textBoxAddNomeCliente.Text,
                              birthday = birthday,
                              gender = gender,
-                             idPersonalTrainer = idPersonalTrainer
+                             idPersonal_trainer = idPersonalTrainer
                          }
                         );
 
@@ -834,11 +836,12 @@ namespace projeto_SIS
                 MessageBox.Show("Atribua um Personal Trainer ao cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+           
             try
             {
                 if (listBoxClientes.SelectedIndex != -1)
                 {
+
                     int id = ((Cliente)listBoxClientes.SelectedItem).ID;
                     RestClient client = new RestClient("http://localhost/projeto_platsi/api/web/v1/user/" + id);
                     RestRequest request = new RestRequest();
@@ -853,8 +856,6 @@ namespace projeto_SIS
                     else if (comboBoxGeneroCliente.Text == "Feminino")
                         gender = "F";
 
-                    PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
-                    int idPersonalTrainer = personalTrainerSelecionado.ID;
 
                     if (textBoxPasswordCliente.Text.Length == 0)
                     {
@@ -866,9 +867,8 @@ namespace projeto_SIS
                                  email = textBoxEmailCliente.Text,
                                  name = textBoxNomeCliente.Text,
                                  gender = gender,
-                                 idPersonalTrainer = idPersonalTrainer
                              }
-                            );
+                        );
                     }
                     else if (textBoxPasswordCliente.Text.Length > 0)
                     {
@@ -881,20 +881,32 @@ namespace projeto_SIS
                                  email = textBoxEmailSecretaria.Text,
                                  name = textBoxNameSecretaria.Text,
                                  gender = gender,
-                                 idPersonalTrainer = idPersonalTrainer
-
                              }
-                            );
+                        );
                     }
 
-                    Utils.escreverParaFicheiro("PEDIDO - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
-                    
                     IRestResponse response = client.Execute(request);
+
+                    RestClient _client = new RestClient("http://localhost/projeto_platsi/api/web/v1/clientes/" + id);
+                    RestRequest _request = new RestRequest();
+                    _request.Method = Method.PUT;
+                    _request.AddHeader("Accept", "application/json");
+                    _request.AddHeader("Content-Type", "application/json");
+                    _request.AddHeader("ACCESS-TOKEN", access_token);
+
+                    PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
+                    int idPersonalTrainer = personalTrainerSelecionado.ID;
+                    _request.AddJsonBody(new { idPersonal_trainer = idPersonalTrainer });
+
+                    IRestResponse _response = _client.Execute(_request);
+
+
+                    Utils.escreverParaFicheiro("PEDIDO - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
                     Utils.escreverParaFicheiro2("RESPOSTA - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), response.Content);
 
                     listBoxClientes.DataSource = null;
-
+                    
                     ListarClientes();
                 }
             }
