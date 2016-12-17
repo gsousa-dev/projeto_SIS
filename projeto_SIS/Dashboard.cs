@@ -831,11 +831,6 @@ namespace projeto_SIS
                 MessageBox.Show("Escolha o genero do cliente)", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (comboBoxPTCliente.SelectedIndex == -1)
-            {
-                MessageBox.Show("Atribua um Personal Trainer ao cliente", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
            
             try
             {
@@ -887,19 +882,22 @@ namespace projeto_SIS
 
                     IRestResponse response = client.Execute(request);
 
-                    RestClient _client = new RestClient("http://localhost/projeto_platsi/api/web/v1/clientes/" + id);
-                    RestRequest _request = new RestRequest();
-                    _request.Method = Method.PUT;
-                    _request.AddHeader("Accept", "application/json");
-                    _request.AddHeader("Content-Type", "application/json");
-                    _request.AddHeader("ACCESS-TOKEN", access_token);
+                    if (comboBoxAddPTCliente.Text.Length > 0)
+                    {
+                        RestClient _client = new RestClient("http://localhost/projeto_platsi/api/web/v1/clientes/" + id);
+                        RestRequest _request = new RestRequest();
+                        _request.Method = Method.PUT;
+                        _request.AddHeader("Accept", "application/json");
+                        _request.AddHeader("Content-Type", "application/json");
+                        _request.AddHeader("ACCESS-TOKEN", access_token);
 
-                    PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
-                    int idPersonalTrainer = personalTrainerSelecionado.ID;
-                    _request.AddJsonBody(new { idPersonal_trainer = idPersonalTrainer });
+                        PersonalTrainer personalTrainerSelecionado = ((PersonalTrainer)comboBoxAddPTCliente.SelectedItem);
+                        int idPersonalTrainer = personalTrainerSelecionado.ID;
+                        _request.AddJsonBody(new { idPersonal_trainer = idPersonalTrainer });
 
-                    IRestResponse _response = _client.Execute(_request);
-
+                        IRestResponse _response = _client.Execute(_request);
+                    }
+                    
 
                     Utils.escreverParaFicheiro("PEDIDO - ALTERAR CLIENTE", client.BaseUrl.ToString(), request.Method.ToString(), request.Parameters);
 
